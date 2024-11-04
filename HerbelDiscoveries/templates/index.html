@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #006400; /* Dark green */
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 2px solid #006400;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #006400;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d00; /* Darker green on hover */
+        }
+
+        p {
+            color: #333;
+        }
+
+        h2 {
+            color: #006400;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Leaf Recognition</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".jpg, .jpeg, .png, .gif" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if result_text %}
+        <p>{{ result_text }}</p>
+    {% endif %}
+
+    {% if description_text %}
+        <h2>Description:</h2>
+        <p>{{ description_text }}</p>
+    {% endif %}
+</body>
+
+</html>

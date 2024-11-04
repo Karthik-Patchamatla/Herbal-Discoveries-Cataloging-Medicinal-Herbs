@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 64vh; /* Adjust as needed */
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff; /* Adjust text color */
+            font-size: 24px; /* Adjust font size */
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #006400; /* Dark green */
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 2px solid #006400;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #006400;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d00; /* Darker green on hover */
+        }
+
+        p {
+            color: #333;
+            margin-top: 20px; /* Add margin-top for spacing */
+        }
+
+        h2 {
+            color: #006400;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            margin-top: 20px;
+            display: block; /* Add this line to make the image a block element */
+            margin-left: auto; /* Align the image in the center horizontally */
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='image.jpg') }}" alt="Your Image">
+        <div class="text-overlay">
+            Herbal Discoveries: Cataloging Medicinal Herbs
+        </div>
+    </div>
+
+    <h1>Upload Your Image</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".jpg, .jpeg, .png, .gif" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if uploaded_image %}
+        <img src="{{ url_for('static', filename=uploaded_image) }}" alt="Uploaded Image">
+    {% endif %}
+
+    {% if result_text %}
+        <p>{{ result_text }}</p>
+    {% endif %}
+
+    {% if description_text %}
+        <h2>Description:</h2>
+        <p>{{ description_text }}</p>
+    {% endif %}
+</body>
+
+</html>
